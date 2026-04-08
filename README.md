@@ -2,6 +2,8 @@
 
 Un modulo TypeScript leggero e indipendente dai framework per integrare **Google One Tap** e **Sign-In with Google** (Google Identity Services) in qualsiasi applicazione web, con zero dipendenze esterne.
 
+🚀 **[Vedi la Demo Live](https://www.faber04.com/demos/google1tap/)**
+
 ---
 
 ## 🚀 Caratteristiche Principali
