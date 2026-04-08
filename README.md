@@ -30,6 +30,8 @@ test/
     └── google-one-tap.d.ts # Dichiarazioni di tipo
 ```
 
+---
+
 ## ⚡️ Guida Rapida
 
 ### 1. Installazione
@@ -89,7 +91,7 @@ export class GoogleLogin extends LitElement {
   firstUpdated() {
     GoogleOneTap.init({
       clientId: 'TUO_CLIENT_ID.apps.googleusercontent.com',
-      buttonContainerId: this.container, // Riferimento diretto all'elemento nel Shadow DOM
+      buttonContainerId: this.container, // Riferimento diretto al Shadow DOM
       onSuccess: ({ user }) => {
         console.log('Login riuscito:', user.email);
       }
@@ -117,6 +119,35 @@ Dopo un login riuscito, il modulo restituisce l'oggetto `user` decodificato. Ecc
   "family_name": "Rossi",
   "locale": "it",
   "iat": 1618900000,
+  "exp": 1618903600
+}
+```
+
+---
+
+## ⚙️ Configurazione
+
+Il metodo `GoogleOneTap.init()` accetta un oggetto di configurazione:
+
+| Opzione | Tipo | Default | Descrizione |
+| :--- | :--- | :--- | :--- |
+| `clientId` | `string` | **Richiesto** | Il tuo Client ID OAuth 2.0 di Google. |
+| `onSuccess` | `function` | - | Callback eseguita al successo dell'autenticazione. |
+| `onError` | `function` | - | Callback eseguita se il prompt fallisce o viene chiuso. |
+| `buttonContainerId` | `string \| HTMLElement` | - | ID $(\#)$ o riferimento all'elemento DOM per il pulsante ufficiale. |
+| `autoPrompt` | `boolean` | `true` | Mostra automaticamente il popup One Tap. |
+| `uxMode` | `string` | `'popup'` | `'popup'` o `'redirect'`. |
+| `loginUri` | `string` | - | Necessario se `uxMode` è `'redirect'`. |
+| `buttonConfig` | `object` | `{}` | Opzioni extra per `renderButton()` di Google. |
+
+---
+
+## 🔒 Sicurezza
+
+> [!IMPORTANT]
+> **Non fidarti mai del profilo decodificato lato client per l'autenticazione.**
+> Dopo un login riuscito, invia sempre la `credential` (JWT) al tuo backend e verificala utilizzando la [Google Auth Library](https://github.com/googleapis/google-auth-library-nodejs) o una libreria di verifica JWT standard.
+
 ---
 
 ## 🔑 Come ottenere un Client ID Google
@@ -138,7 +169,9 @@ Per utilizzare questo modulo, è necessario configurare un progetto nella Google
     *   > **Importante**: Inserisci solo il dominio radice (es. `https://www.faber04.com`). **Non** includere sottocartelle o barre finali, altrimenti Google restituirà l'errore "Origine non valida".
 7.  Fai clic su **Crea**. Riceverai il tuo **Client ID** (formato: `xxxxxxxx.apps.googleusercontent.com`).
 
+---
 
 ## 📄 Licenza
 
 Questo progetto è distribuito sotto licenza MIT.
+Faber04 © 2026
