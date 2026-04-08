@@ -23,12 +23,9 @@ test/
 ├── tsconfig.json           # Configurazione TypeScript
 ├── package.json            # Script di build e dipendenze di sviluppo
 ├── .gitignore              # Regole per Git
-├── dist/                   # File compilati (generati)
-│   ├── google-one-tap.js   # Modulo ES compilato
-│   └── google-one-tap.d.ts # Dichiarazioni di tipo
-└── DOCS/                   # Documentazione estesa
-    ├── module-reference.md # Riferimento tecnico delle API
-    └── integration-guide.md# Guida all'integrazione passo dopo passo
+└── dist/                   # File compilati (generati)
+    ├── google-one-tap.js   # Modulo ES compilato
+    └── google-one-tap.d.ts # Dichiarazioni di tipo
 ```
 
 ---
@@ -142,12 +139,6 @@ Per utilizzare questo modulo, è necessario configurare un progetto nella Google
     *   In **Origini JavaScript autorizzate**, aggiungi gli URL da cui caricherai il modulo (es. `http://localhost:8787` per i test locali).
 7.  Fai clic su **Crea**. Riceverai il tuo **Client ID** (formato: `xxxxxxxx.apps.googleusercontent.com`).
 
----
-
-## 📖 Documentazione Correlata
-
-- [Guida all'Integrazione](./DOCS/integration-guide.md): Passaggi dettagliati dalla configurazione della Google Cloud Console alla verifica backend.
-- [Riferimento Modulo](./DOCS/module-reference.md): Analisi tecnica completa delle API di `google-one-tap.ts`.
 
 ## 📄 Licenza
 
