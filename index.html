@@ -21,7 +21,7 @@
     <div class="card-header">
       <div class="logo-badge">🔐</div>
       <h1 class="card-title">Google One Tap</h1>
-      <p class="card-sub">Demo agnostica del modulo drop-in.<br/>Inserisci il tuo <strong>Client ID</strong> e premi Inizializza.</p>
+      <p class="card-sub">Demo agnostica del modulo drop-in.<br/>Inizializzazione automatica in corso...</p>
     </div>
 
     <!-- User info (hidden until login) -->
@@ -41,9 +41,6 @@
       <!-- Google rendered button -->
       <div id="google-btn-container"></div>
 
-      <button class="btn-init" id="btn-initialize" onclick="initOneTap()" style="margin-top: 1rem;">
-        ▶ Inizializza One Tap
-      </button>
     </div>
 
     <!-- Log -->
@@ -131,11 +128,8 @@
     log('Utente disconnesso. Puoi procedere a una nuova inizializzazione.', 'info');
   };
 
-  // ── Auto-restore session ────────────────────────────────────────────────
-  if (sessionStorage.getItem('fb04:google1tap')) {
-    log('Sessione esistente trovata in sessionStorage. Ripristino…', 'info');
-    window.initOneTap();
-  }
+  // ── Automatic Initialization ───────────────────────────────────────────
+  window.initOneTap();
 </script>
 
 </body>
