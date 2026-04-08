@@ -240,6 +240,25 @@
       margin-top: .35rem;
     }
 
+    .btn-logout {
+      margin-left: auto;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      padding: .4rem .8rem;
+      border-radius: var(--radius-sm);
+      font-size: .75rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .btn-logout:hover {
+      background: #ef4444;
+      border-color: #ef4444;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, .2);
+    }
+
     /* ── Log area ─────────────────────────────────────────────── */
     .log-area {
       background: var(--bg);
@@ -288,30 +307,34 @@
         <div class="user-email" id="user-email">—</div>
         <div class="badge-verified">✓ Autenticato con Google</div>
       </div>
+      <button class="btn-logout" onclick="handleLogout()">Esci</button>
     </div>
 
-    <div class="divider">oppure accedi con Google</div>
+    <div id="login-section">
+      <div class="divider">oppure accedi con Google</div>
 
-    <!-- Google rendered button -->
-    <div id="google-btn-container"></div>
+      <!-- Google rendered button -->
+      <div id="google-btn-container"></div>
 
-    <div class="divider">configurazione</div>
+      <div class="divider">configurazione</div>
 
-    <!-- Config panel -->
-    <div class="config-panel">
-      <div>
-        <label for="client-id-input">Google Client ID</label>
-        <input
-          id="client-id-input"
-          type="text"
-          value="1022700397452-ht0m5rebeehh1riuj5viv4kiblclgnr0.apps.googleusercontent.com"
-          placeholder="123456789-xxxx.apps.googleusercontent.com"
-          autocomplete="off"
-          spellcheck="false"
-        />
-      <button class="btn-init" id="btn-initialize" onclick="initOneTap()">
-        ▶ Inizializza One Tap
-      </button>
+      <!-- Config panel -->
+      <div class="config-panel">
+        <div>
+          <label for="client-id-input">Google Client ID</label>
+          <input
+            id="client-id-input"
+            type="text"
+            value="1022700397452-ht0m5rebeehh1riuj5viv4kiblclgnr0.apps.googleusercontent.com"
+            placeholder="123456789-xxxx.apps.googleusercontent.com"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </div>
+        <button class="btn-init" id="btn-initialize" onclick="initOneTap()">
+          ▶ Inizializza One Tap
+        </button>
+      </div>
     </div>
 
     <!-- Log -->
@@ -374,7 +397,11 @@
         document.getElementById('user-name').textContent  = user.name;
         document.getElementById('user-email').textContent = user.email;
         document.getElementById('user-avatar').src        = user.picture;
+        
         document.getElementById('user-info').classList.add('visible');
+        document.getElementById('login-section').style.display = 'none';
+        
+        window._loggedEmail = user.email;
       },
 
       onError({ reason }) {
@@ -383,6 +410,22 @@
     });
 
     log('Modulo GoogleOneTap.init() chiamato.', 'info');
+  };
+
+  // ── handleLogout ────────────────────────────────────────────────────────
+  window.handleLogout = function() {
+    log('Richiesta disconnessione…', 'info');
+    
+    if (window._loggedEmail) {
+      GoogleOneTap.signOut(window._loggedEmail);
+      log(`Sessione per ${window._loggedEmail} revocata.`, 'success');
+    }
+
+    // Reset UI
+    document.getElementById('user-info').classList.remove('visible');
+    document.getElementById('login-section').style.display = 'block';
+    
+    log('Utente disconnesso. Puoi procedere a una nuova inizializzazione.', 'info');
   };
 </script>
 
