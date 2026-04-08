@@ -99,6 +99,30 @@ Il metodo `GoogleOneTap.init()` accetta un oggetto di configurazione:
 > **Non fidarti mai del profilo decodificato lato client per l'autenticazione.**
 > Dopo un login riuscito, invia sempre la `credential` (JWT) al tuo backend e verificala utilizzando la [Google Auth Library](https://github.com/googleapis/google-auth-library-nodejs) o una libreria di verifica JWT standard.
 
+### Esempio di Payload JWT (Decodificato)
+
+Ecco come appare tipicamente il payload di un ID Token restituito da Google:
+
+```json
+{
+  "iss": "https://accounts.google.com",
+  "azp": "xxxxxxxx.apps.googleusercontent.com",
+  "aud": "xxxxxxxx.apps.googleusercontent.com",
+  "sub": "109876543210987654321",
+  "email": "mario.rossi@gmail.com",
+  "email_verified": true,
+  "nbf": 1618900000,
+  "name": "Mario Rossi",
+  "picture": "https://lh3.googleusercontent.com/a-/AOh14G...",
+  "given_name": "Mario",
+  "family_name": "Rossi",
+  "locale": "it",
+  "iat": 1618900000,
+  "exp": 1618903600,
+  "jti": "abcdef123456"
+}
+```
+
 ---
 
 ## 🔑 Come ottenere un Client ID Google
