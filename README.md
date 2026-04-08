@@ -101,6 +101,25 @@ Il metodo `GoogleOneTap.init()` accetta un oggetto di configurazione:
 
 ---
 
+## 🔑 Come ottenere un Client ID Google
+
+Per utilizzare questo modulo, è necessario configurare un progetto nella Google Cloud Console:
+
+1.  Vai alla [Google Cloud Console](https://console.cloud.google.com/).
+2.  Crea un nuovo progetto o selezionane uno esistente.
+3.  Vai a **API e servizi** > **Credenziali**.
+4.  Fai clic su **Crea credenziali** e seleziona **ID client OAuth**.
+5.  Se è la prima volta, dovrai configurare la "Schermata di consenso OAuth":
+    *   Scegli un "User Type" (solitamente **Esterno**).
+    *   Inserisci le informazioni di base dell'app.
+    *   Aggiungi l'ambito `.../auth/userinfo.email` e `.../auth/userinfo.profile`.
+6.  Torna a **Crea credenziali** > **ID client OAuth**:
+    *   Seleziona **Applicazione Web** come tipo di applicazione.
+    *   In **Origini JavaScript autorizzate**, aggiungi gli URL da cui caricherai il modulo (es. `http://localhost:8787` per i test locali).
+7.  Fai clic su **Crea**. Riceverai il tuo **Client ID** (formato: `xxxxxxxx.apps.googleusercontent.com`).
+
+---
+
 ## 📖 Documentazione Correlata
 
 - [Guida all'Integrazione](./DOCS/integration-guide.md): Passaggi dettagliati dalla configurazione della Google Cloud Console alla verifica backend.
