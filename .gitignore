@@ -2,3 +2,8 @@
 *.d.ts.map
 INTERNAL/
 config/google-config.js
+.DS_Store
+
+# Keep this repository isolated from finance-analyzer project files
+finance-analyzer/
+finance-analyzer-docs/
